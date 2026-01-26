@@ -1,0 +1,79 @@
+# Intellij 
+.idea/
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+*.iml
+*.ipr
+*.iws
+
+# ENV
+
+.env
+.env.*
+!.env.example
+
+# Typescript
+
+node_modules/
+npm-debug.log*
+
+dist/
+build/
+out/
+coverage/
+.eslintcache
+.cache/
+
+# Java/Maven
+
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+.mvn/wrapper/maven-wrapper.jar
+
+# Go
+
+bin/
+pkg/
+vendor/
+
+*.test
+*.out
+
+# Docker
+
+docker-compose.override.yml
+docker-compose.local.yml
+
+**/.docker/
+**/tmp/
+**/data/
+
+# Grafana
+
+grafana/data/
+grafana/logs/
+grafana/plugins/
+
+# Prometheus
+
+prometheus/data/
+prometheus/wal/
+
+# k6
+
+k6/results/
+k6/reports/
+k6/*.json
+k6/*.html
+
+
+# Runtime/Temp
+
+tmp/
+temp/
+*.pid
+*.pid.lock
