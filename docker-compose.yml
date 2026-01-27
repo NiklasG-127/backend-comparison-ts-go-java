@@ -1,0 +1,17 @@
+services:
+  ts-api:
+    build: ./apis/api-ts
+    container_name: my-ts-api
+    labels:
+      app: ts-api
+      lang: ts
+    environment:
+      - SERVER_PORT=3000
+      - SERVER_ADDRESS=0.0.0.0
+    ports:
+      - "3000:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1024M
