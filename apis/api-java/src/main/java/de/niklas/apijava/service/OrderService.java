@@ -4,52 +4,33 @@ import de.niklas.apijava.dto.order.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
 
     public OrderAggregateResponseDTO aggregateOrders(OrderRequestDTO[] orders) {
-        List<OrderRequestDTO> paidOrders = new ArrayList<>();
+        Map<String, OrderResponseDTO> map = new HashMap<>();
+
         for (OrderRequestDTO order : orders) {
-            if (order.status() == STATUSENUM.PAID){
-                paidOrders.add(order);
-            }
-        }
-        List<OrderResponseDTO> aggregated = new ArrayList<>();
+            if (order.status() != STATUSENUM.PAID) continue;
 
-        for (OrderRequestDTO order : paidOrders) {
-            OrderResponseDTO existing = null;
-            for (OrderResponseDTO a : aggregated){
-                if (a.customerId().equals(order.customerId())){
-                    existing = a;
-                    break;
-                }
+            OrderResponseDTO entry = map.get(order.customerId());
+            if (entry == null) {
+                entry = new OrderResponseDTO(order.customerId(), 0,0,0);
             }
-            if (existing == null){
-                existing = new OrderResponseDTO(
-                        order.customerId(),
-                        0,
-                        0,
-                        0
-
-                );
-                aggregated.add(existing);
-            }
-            int newTotal = existing.totalOrders() + 1;
-            double newAmount = existing.amount() + order.amount();
+            int newTotal = entry.totalOrders() +1;
+            double newAmount = entry.amount() + order.amount();
             double newAvg = newAmount / newTotal;
 
-            OrderResponseDTO updated = new OrderResponseDTO(
-                    existing.customerId(),
-                    newTotal,
-                    newAmount,
-                    newAvg
-            );
-            int index = aggregated.indexOf(existing);
-            aggregated.set(index, updated);
+            OrderResponseDTO updated = new OrderResponseDTO(order.customerId(), newTotal, newAmount, newAvg);
+            map.put(order.customerId(), updated);
         }
-        OrderResponseDTO[] customersArray = aggregated.toArray(new OrderResponseDTO[0]);
-        return new OrderAggregateResponseDTO(customersArray);
+        List<OrderResponseDTO> output = new ArrayList<>(map.values());
+        output.sort((a, b) -> a.customerId().compareTo(b.customerId()));
+        OrderResponseDTO[] customerArray = output.toArray(new OrderResponseDTO[0]);
+        return new OrderAggregateResponseDTO(customerArray);
     }
 }

@@ -9,9 +9,11 @@ const SALT = Buffer.from("TOO_MUCH_SALT_IN_YOUR_FOOD_IS_BAD_FOR_YOU", "ascii");
 
 
 export function hasher(toBeHashed: string, iterations: number): string{
+    // Explizite UTF-8-Kodierung für eine vergleichbare Byte-Repräsentation
+    const input = Buffer.from(toBeHashed, 'utf8');
     // Erzeugt einen abgeleiteten Schlüssel aus dem Eingabestring mit dem Salt, Wiederholungen, Länge des Ergebnisses und Algorithmus
     const derivedKey = pbkdf2Sync(
-        toBeHashed,
+        input,
         SALT,
         iterations,
         KEY_LENGTH,

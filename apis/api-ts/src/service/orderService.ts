@@ -1,30 +1,32 @@
 import {AggregateOrder, OrderType, STATUS} from "../types/ordersType";
 
 export function aggregateOrderService(data: OrderType[]): AggregateOrder[] {
-    // Filtert die Bestellungen nach bereits bezahlten
-    const paidOrders: OrderType[] = data.filter(item => item.status === STATUS.PAID);
+    // Erstellt eine HashMap für schnellen Zugriff auf Orders
+    const map = new Map<string, AggregateOrder>();
 
-    // Aggregiert Bestellungen pro Kunden
-    const aggregateOrders: AggregateOrder[] = paidOrders.reduce<AggregateOrder[]>((agg: AggregateOrder[], order: OrderType): AggregateOrder[] => {
-        // Sucht einen bestehenden Eintrag für den Kunden
-        let entry: AggregateOrder | undefined = agg.find(a => a.customerId === order.customerId);
-        // Wenn kein Eintrag existiert wird ein neuer erstellt für den Kunden
-        if(!entry){
-            entry = {
-                customerId: order.customerId,
-                totalOrders: 0,
-                amount: 0,
-                avg: 0
-            }
-            agg.push(entry)
+    // Geht über alle Orders
+    for (const order of data) {
+        // Ignoriert Orders die nicht bezahlt sind
+        if (order.status !== STATUS.PAID) continue;
+
+        // Holt bereits vorhandene Einträge aus der Map bzw. wenn keine vorhanden sind undefined.
+        let entry: AggregateOrder | undefined = map.get(order.customerId);
+        if(entry === undefined) {
+            // Wenn Eintrag undefined, dann wird ein neuer erstellt und mit customerId als Key in die HashMap gesetzt
+            entry = { customerId: order.customerId, totalOrders: 0, amount: 0, avg: 0};
+            map.set(order.customerId, entry);
         }
-        // Aktualisiert Anzahl der Bestellungen, Gesamtbetrag und Durchschnittsbetrag pro Bestellung
+        // Attribute des Eintrags werden verändert (Menge erhöht, Betrag erhöht, neuen Avg ausrechnen)
         entry.totalOrders++;
         entry.amount += order.amount;
         entry.avg = entry.amount / entry.totalOrders;
+    }
+    // Erstellt ein Array aus der HashMap
+    const result = Array.from(map.values());
 
-        return agg;
-    }, []);
-    // Gibt die aggregierten Daten zurück
-    return aggregateOrders;
+    // Sortiert das Array nach customerIds
+    result.sort((a, b) => a.customerId.localeCompare(b.customerId));
+
+    // Gibt das sortierte Array zurück
+    return result;
 }

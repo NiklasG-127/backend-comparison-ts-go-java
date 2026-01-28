@@ -13,6 +13,6 @@ public class HealthController {
 
     @GetMapping
     public ResponseEntity<StatusResponseDTO> health(){
-        return ResponseEntity.status(HttpStatus.OK).body(new StatusResponseDTO("ok"));
+        return ResponseEntity.status(HttpStatus.OK).body(new StatusResponseDTO("Ok"));
     }
 }

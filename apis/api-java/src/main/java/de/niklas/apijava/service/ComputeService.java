@@ -28,10 +28,11 @@ public class ComputeService {
     }
 
     public PrimeResponseDTO computePrimes(int limit) {
+        if (limit < 0) throw new IllegalArgumentException("limit cannot be negative");
         boolean[] isPrime = primeCalculator.eratosthenes(limit);
         int lastPrime = primeCalculator.lastPrime(isPrime);
         int count = primeCalculator.countOfPrimes(isPrime);
-        return new PrimeResponseDTO(limit, lastPrime, count);
+        return new PrimeResponseDTO(limit, count, lastPrime);
     }
 
     public SortResponseDTO computeSort(int[] values) {

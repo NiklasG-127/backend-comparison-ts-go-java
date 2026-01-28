@@ -1,4 +1,4 @@
-import {eratosthenes, primeArrReducer} from "../lib/prime";
+import {eratosthenes, countOfPrimes, lastPrimeFunction} from "../lib/prime";
 import {hasher} from "../lib/hasher";
 import {UserInputType, UserOutputType} from "../types/userType";
 import {userTransform} from "../lib/userTransform";
@@ -14,12 +14,13 @@ export function sortingService(numArr: number[]): number[] {
 }
 
 export function primeService(limit: number): {count: number; lastPrime: number} {
+    if(limit < 0) throw new Error("Limit cant be negative");
     // Erstellt ein Array mit Booleans mit einer Helper Funktion
     const primeArr: boolean[] = eratosthenes(limit);
     // Holt die Anzahl der primes im primeArr
-    const count: number = primeArrReducer(primeArr);
+    const count: number = countOfPrimes(primeArr);
     // Holt den letzten Index eines True Wertes (also einer Primzahl im primeArr
-    const lastPrime: number = primeArr.lastIndexOf(true, limit);
+    const lastPrime: number = lastPrimeFunction(primeArr);
 
     return {count, lastPrime};
 }

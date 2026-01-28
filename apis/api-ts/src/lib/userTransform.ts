@@ -2,7 +2,7 @@ import {UserInputType, UserOutputType} from "../types/userType";
 import {randomUUID} from "node:crypto";
 import {hasher} from "./hasher";
 import {sortingService} from "../service/computeService";
-import {eratosthenes} from "./prime";
+import {eratosthenes, lastPrimeFunction} from "./prime";
 
 export function userTransform(userInput: UserInputType): UserOutputType{
     // Generiert eine UUID
@@ -14,7 +14,7 @@ export function userTransform(userInput: UserInputType): UserOutputType{
     // Erstellt ein Array für Primzahlen mit dem Sieb des Eratosthenes
     const primes: boolean[] = eratosthenes(userInput.limit);
     // Holt die letzte Primzahl aus dem Array von Primzahlen
-    const lastPrime: number = primes.lastIndexOf(true, userInput.limit);
+    const lastPrime: number = lastPrimeFunction(primes);
 
     return {
         id: id,
