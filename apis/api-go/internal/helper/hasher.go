@@ -15,7 +15,7 @@ const (
 var salt = []byte("TOO_MUCH_SALT_IN_YOUR_FOOD_IS_BAD_FOR_YOU")
 
 func Hasher(toBeHashed string, iterations int) (string, error) {
-	if iterations < 1 {
+	if iterations <= 0 {
 		return "", errors.New("iterations must be greater than zero")
 	}
 

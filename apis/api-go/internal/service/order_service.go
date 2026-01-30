@@ -35,16 +35,14 @@ func (os *OrderService) Aggregate(orders []dto.OrderInput) ([]dto.CustomerOut, e
 		m[order.CustomerId] = entry
 	}
 
-	keys := make([]string, 0, len(m))
-	for k := range m {
-		keys = append(keys, k)
-	}
-
-	sort.Strings(keys)
-
 	result := make([]dto.CustomerOut, 0, len(m))
-	for _, k := range keys {
-		result = append(result, m[k])
+	for _, v := range m {
+		result = append(result, v)
 	}
+
+	sort.Slice(result, func(i, j int) bool {
+		return result[i].CustomerId > result[j].CustomerId
+	})
+
 	return result, nil
 }

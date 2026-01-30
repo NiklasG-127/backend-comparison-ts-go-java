@@ -5,8 +5,12 @@ func Eratosthenes(limit int) []bool {
 	for i := 0; i <= limit; i++ {
 		isPrime[i] = true
 	}
-	isPrime[0] = false
-	isPrime[1] = false
+	if limit >= 0 {
+		isPrime[0] = false
+	}
+	if limit >= 1 {
+		isPrime[1] = false
+	}
 
 	for i := 2; i*i <= limit; i++ {
 		if isPrime[i] {

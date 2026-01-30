@@ -39,7 +39,7 @@ func (ch *ComputeHandler) Prime(ctx *gin.Context) {
 	}
 	count, lastPrime, err := ch.computeService.Prime(req.Limit)
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	ctx.JSON(http.StatusOK, dto.PrimeResponse{Limit: req.Limit, Count: count, LastPrime: lastPrime})
@@ -67,7 +67,7 @@ func (ch *ComputeHandler) Mixed(ctx *gin.Context) {
 	}
 	userOutput, err := ch.computeService.Mixed(req.Users)
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err})
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	ctx.JSON(http.StatusOK, dto.MixedResponse{UserOutput: userOutput})

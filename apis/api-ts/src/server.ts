@@ -9,7 +9,7 @@ const app = express();
 
 // Sagt, dass JSON genutzt werden soll und Limit von 50mb bei den Dateien (Wichtig für Testing mit größeren Datenmengen)
 app.use(express.json({ limit: "50mb" }));
-
+app.disable("x-powered-by");
 
 // Bindet die Router ein
 app.use("/health", healthRouter)

@@ -7,8 +7,8 @@ export function primeHandler(req: Request, res: Response) {
     const rawLimit = req.body.limit;
     const limit = Number(rawLimit);
     // Überprüft, dass Limit größer als 0 ist und eine Zahl (Integer)
-    if(!Number.isInteger(limit) || limit <= 0){
-        return res.status(400).json({error: "Limit must be a positive integer"})
+    if(!Number.isInteger(limit) || limit < 0){
+        return res.status(400).json({error: "Limit must be an integer >= 0"})
     }
     // Gibt das Limit an Service layer und bekommt Anzahl der Primzahlen sowie die Letzte Primzahl zurück
     const {count, lastPrime} = primeService(limit);

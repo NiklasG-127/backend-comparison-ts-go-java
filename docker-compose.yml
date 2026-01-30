@@ -31,3 +31,20 @@ services:
         limits:
           cpus: "1"
           memory: 1024M
+
+  go-api:
+    build: ./apis/api-go
+    container_name: my-go-api
+    labels:
+      app: go-api
+      lang: go
+    environment:
+      - SERVER_PORT=3002
+      - SERVER_ADDRESS=0.0.0.0
+    ports:
+      - "3002:3002"
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1024M
