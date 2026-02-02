@@ -6,15 +6,16 @@ services:
       app: ts-api
       lang: ts
     environment:
-      - SERVER_PORT=3000
+      - SERVER_PORT=3060
       - SERVER_ADDRESS=0.0.0.0
     ports:
-      - "3000:3000"
+      - "3060:3060"
     deploy:
       resources:
         limits:
           cpus: "1"
           memory: 1024M
+
   java-api:
     build: ./apis/api-java
     container_name: my-java-api
@@ -22,10 +23,10 @@ services:
       app: java-api
       lang: java
     environment:
-      - SERVER_PORT=3001
+      - SERVER_PORT=3070
       - SERVER_ADDRESS=0.0.0.0
     ports:
-      - "3001:3001"
+      - "3070:3070"
     deploy:
       resources:
         limits:
@@ -39,12 +40,54 @@ services:
       app: go-api
       lang: go
     environment:
-      - SERVER_PORT=3002
+      - SERVER_PORT=3080
       - SERVER_ADDRESS=0.0.0.0
     ports:
-      - "3002:8080"
+      - "3080:3080"
     deploy:
       resources:
         limits:
           cpus: "1"
           memory: 1024M
+
+  prometheus:
+    image: prom/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.enable-remove-write-receiver"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+  k6:
+    image: grafana/k6
+    depends_on:
+      - go-api
+      - java-api
+      - ts-api
+      - prometheus
+    volumes:
+      - ./k6/scripts
+    environment:
+      - K6_PROMETHEUS_RW_SERVER_URL=http://prometheus:9090/api/v1/write
+      - K6_PROMETHEUS_RW_TREND_STATS=p(50),p(95),p(99),avg,min,max
+    # command: ["run", "-o", "experimental-prometheus-rw", "/scripts/stress.js"]
+    entrypoint: ["k6"]
