@@ -9,9 +9,19 @@ import (
 // registerRoutes registriert alle Routen
 func registerRoutes(router *gin.Engine, h *handler.HealthHandler, c *handler.ComputeHandler, o *handler.OrderHandler) {
 	router.GET("/health", h.Health)
-	router.POST("/compute/hash", c.Hashing)
-	router.POST("/compute/primes", c.Prime)
-	router.POST("/compute/sort", c.Sort)
-	router.POST("/compute/mixed", c.Mixed)
-	router.POST("/orders/aggregate", o.Aggregate)
+
+	compute := router.Group("/compute")
+	{
+
+		compute.POST("/hash", c.Hashing)
+		compute.POST("/primes", c.Prime)
+		compute.POST("/sort", c.Sort)
+		compute.POST("/mixed", c.Mixed)
+
+	}
+
+	orders := router.Group("/orders")
+	{
+		orders.POST("/aggregate", o.Aggregate)
+	}
 }

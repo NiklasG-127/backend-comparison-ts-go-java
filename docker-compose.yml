@@ -42,7 +42,7 @@ services:
       - SERVER_PORT=3002
       - SERVER_ADDRESS=0.0.0.0
     ports:
-      - "3002:3002"
+      - "3002:8080"
     deploy:
       resources:
         limits:

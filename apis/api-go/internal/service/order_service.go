@@ -41,7 +41,7 @@ func (os *OrderService) Aggregate(orders []dto.OrderInput) ([]dto.CustomerOut, e
 	}
 
 	sort.Slice(result, func(i, j int) bool {
-		return result[i].CustomerId > result[j].CustomerId
+		return result[i].CustomerId < result[j].CustomerId
 	})
 
 	return result, nil
