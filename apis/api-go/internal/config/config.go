@@ -15,17 +15,19 @@ type (
 		Name string `yaml:"name"`
 	}
 	Server struct {
-		Port    string `yaml:"port"`
-		Address string `yaml:"address"`
+		Port    string `yaml:"port" env:"SERVER_PORT" env-default:"8080"`
+		Address string `yaml:"address" env:"SERVER_ADDRESS" env-default:"0.0.0.0"`
 	}
 )
 
 func NewConfig() (*Config, error) {
 	cfg := &Config{}
 
-	err := cleanenv.ReadConfig("config.yaml", cfg)
-	if err != nil {
+	if err := cleanenv.ReadConfig("config.yaml", cfg); err != nil {
 		return nil, fmt.Errorf("could not load config: %v", err)
+	}
+	if err := cleanenv.ReadEnv(cfg); err != nil {
+		return nil, fmt.Errorf("could not read env: %v", err)
 	}
 	return cfg, nil
 }

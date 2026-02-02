@@ -2,5 +2,5 @@ app:
   name: api-go
 
 server:
-  port: "8080"
+  port: "3002"
   address: "0.0.0.0"
