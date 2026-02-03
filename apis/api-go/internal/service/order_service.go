@@ -5,12 +5,15 @@ import (
 	"sort"
 )
 
+// OrderService kapselt die Logik für die Order-Endpunkte
 type OrderService struct{}
 
+// NewOrderService erstellt eine neue OrderService-Instanz
 func NewOrderService() *OrderService {
 	return &OrderService{}
 }
 
+// Aggregate aggregiert bezahlte Bestellungen pro Kunde
 func (os *OrderService) Aggregate(orders []dto.OrderInput) ([]dto.CustomerOut, error) {
 	m := make(map[string]dto.CustomerOut, len(orders))
 

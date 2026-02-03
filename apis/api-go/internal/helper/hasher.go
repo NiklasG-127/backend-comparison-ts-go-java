@@ -9,11 +9,14 @@ import (
 )
 
 const (
+	// keyLength definiert die Länge des abgeleiteten Schlüssels in Bytes
 	keyLength = 64
 )
 
+// salt wird für die Schlüsselableitung verwendet
 var salt = []byte("TOO_MUCH_SALT_IN_YOUR_FOOD_IS_BAD_FOR_YOU")
 
+// Hasher erzeugt einen hash aus dem gegebenen String und der Anzahl an Iterationen
 func Hasher(toBeHashed string, iterations int) (string, error) {
 	if iterations <= 0 {
 		return "", errors.New("iterations must be greater than zero")

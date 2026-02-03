@@ -7,6 +7,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// UserTransform transformiert ein UserInput in ein UserOutput
 func UserTransform(user dto.UsersInput) (dto.UsersOutput, error) {
 	id := uuid.New()
 	hashedPassword, err := Hasher(user.Password, user.Iterations)

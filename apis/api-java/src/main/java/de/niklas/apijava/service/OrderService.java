@@ -8,9 +8,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * OrderService kapselt die Logik zur Aggregation von Bestellungen
+ */
 @Service
 public class OrderService {
 
+    /**
+     * Aggregiert die bezahlten Bestellungen pro Kunde
+     * <p>
+     * Für jeden Kunden werden Anzahl, Gesamtsumme sowie durchschnittlicher Betrag der Bestellungen berechnet
+     * </p>
+     * @param orders Eingabebestellungen (nur {@link STATUSENUM#PAID} werden berücksichtigt)
+     * @return Aggregation pro Kunden als {@link OrderAggregateResponseDTO}
+     */
     public OrderAggregateResponseDTO aggregateOrders(OrderRequestDTO[] orders) {
         Map<String, OrderResponseDTO> map = new HashMap<>();
 

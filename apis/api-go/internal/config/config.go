@@ -20,6 +20,7 @@ type (
 	}
 )
 
+// NewConfig lädt die Config.yaml und mögliche env Dateien. Env haben hier priorität
 func NewConfig() (*Config, error) {
 	cfg := &Config{}
 

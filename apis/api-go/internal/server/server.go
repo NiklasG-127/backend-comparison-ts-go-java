@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Server eine Instanz von Server die Config und router hält
+// Server hält Konfiguration und den HTTP-Router
 type Server struct {
 	config *config.Config
 	router *gin.Engine
@@ -31,7 +31,7 @@ func NewServer(config *config.Config) (*Server, error) {
 	return server, nil
 }
 
-// Start startet den Server
+// Start startet den HTTP-Server
 func (server *Server) Start() error {
 	addr := server.config.Address + ":" + server.config.Port
 	if err := server.router.Run(addr); err != nil {

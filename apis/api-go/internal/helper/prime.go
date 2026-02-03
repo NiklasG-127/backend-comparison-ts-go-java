@@ -1,5 +1,6 @@
 package helper
 
+// Eratosthenes berechnet Primzahlen bis zum gegebenen Limit mit dem Sieb des Eratosthenes
 func Eratosthenes(limit int) []bool {
 	isPrime := make([]bool, limit+1)
 	for i := 0; i <= limit; i++ {
@@ -23,6 +24,7 @@ func Eratosthenes(limit int) []bool {
 	return isPrime
 }
 
+// LastPrime gibt die größte gefundene Primzahl zurück
 func LastPrime(isPrime []bool) int {
 	for i := len(isPrime) - 1; i >= 0; i-- {
 		if isPrime[i] {
@@ -32,6 +34,7 @@ func LastPrime(isPrime []bool) int {
 	return -1
 }
 
+// CountOfPrimes zählt die Anzahl der Primzahlen
 func CountOfPrimes(isPrime []bool) int {
 	count := 0
 	for i := 0; i < len(isPrime); i++ {

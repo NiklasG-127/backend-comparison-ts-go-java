@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// main Ausgangspunkt des Servers/Programms
 func main() {
 	// Lädt die Config
 	cfg, err := config.NewConfig()

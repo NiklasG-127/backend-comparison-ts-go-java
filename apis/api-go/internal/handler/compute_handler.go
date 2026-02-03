@@ -8,14 +8,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// ComputeHandler verarbeitet Compute Http-Endpunkte
 type ComputeHandler struct {
 	computeService *service.ComputeService
 }
 
+// NewComputeHandler erstellt einen neuen ComputeHandler mit dem service.ComputeService
 func NewComputeHandler(computeService *service.ComputeService) *ComputeHandler {
 	return &ComputeHandler{computeService}
 }
 
+// Hashing verarbeitet den Hash-Endpunkt
 func (ch *ComputeHandler) Hashing(ctx *gin.Context) {
 	var req dto.HashRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
@@ -31,6 +34,7 @@ func (ch *ComputeHandler) Hashing(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, dto.HashResponse{Hash: hash})
 }
 
+// Prime verarbeitet den Primzahl-Endpunkt
 func (ch *ComputeHandler) Prime(ctx *gin.Context) {
 	var req dto.PrimeRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
@@ -45,6 +49,7 @@ func (ch *ComputeHandler) Prime(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, dto.PrimeResponse{Limit: req.Limit, Count: count, LastPrime: lastPrime})
 }
 
+// Sort verarbeitet den Sortier-Endpunkt
 func (ch *ComputeHandler) Sort(ctx *gin.Context) {
 	var req dto.SortRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
@@ -59,6 +64,7 @@ func (ch *ComputeHandler) Sort(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, dto.SortResponse{Sorted: sorted})
 }
 
+// Mixed verarbeitet den Mixed Endpunkt
 func (ch *ComputeHandler) Mixed(ctx *gin.Context) {
 	var req dto.MixedRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
