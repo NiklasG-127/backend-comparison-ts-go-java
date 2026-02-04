@@ -1,4 +1,4 @@
-import {runBatchReal} from "../flows/batchRealistic";
+import {runBatchReal} from "../flows/batchRealistic.js";
 import {sleep} from "k6"
 
 export const options = {
