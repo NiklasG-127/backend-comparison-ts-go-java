@@ -53,8 +53,8 @@ services:
   prometheus:
     image: prom/prometheus
     command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--web.enable-remove-write-receiver"
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-remote-write-receiver
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
@@ -85,9 +85,10 @@ services:
       - ts-api
       - prometheus
     volumes:
-      - ./k6/scripts
+      - ./k6:/k6
+    working_dir: /k6
     environment:
       - K6_PROMETHEUS_RW_SERVER_URL=http://prometheus:9090/api/v1/write
       - K6_PROMETHEUS_RW_TREND_STATS=p(50),p(95),p(99),avg,min,max
-    # command: ["run", "-o", "experimental-prometheus-rw", "/scripts/stress.js"]
+    # command: ["run", "-o", "experimental-prometheus-rw", "/k6/scripts/smoke.js"]
     entrypoint: ["k6"]
