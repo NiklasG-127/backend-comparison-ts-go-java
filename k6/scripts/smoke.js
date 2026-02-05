@@ -1,5 +1,7 @@
 import {runSingleBatch} from "../flows/batchFlowSingle.js";
-import {runBatch} from "../flows/batchFlowAll";
+import {sleep} from "k6";
+import {THINK_TIME_SMOKE} from "../shared/config.js";
+import {pickEndpoint} from "../shared/pickEndpoint.js";
 
 export const options = {
     vus: 1,
@@ -7,8 +9,10 @@ export const options = {
     tags: {scenario: 'smoke'}
 }
 
-const selected = cases[__env.ENDPOINT || "primes"]
+
 
 export default function (){
-    runBatch()
+    const {path, method, body, endpoint} = pickEndpoint()
+    runSingleBatch(path, method, body, endpoint);
+    sleep(THINK_TIME_SMOKE)
 }

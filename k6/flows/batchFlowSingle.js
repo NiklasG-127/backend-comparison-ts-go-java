@@ -12,7 +12,7 @@ export function runSingleBatch(selected){
     }
     const res = http.batch(reqs)
 
-    check(res.java, {'java 200': (r) => r.status === 200});
-    check(res.ts, {'ts 200': (r) => r.status === 200});
-    check(res.go, {'go 200': (r) => r.status === 200});
+    check(res.java, {'java 200': (r) => r.status === 200}, res.java.request.tags);
+    check(res.ts, {'ts 200': (r) => r.status === 200}, res.ts.request.tags);
+    check(res.go, {'go 200': (r) => r.status === 200}, res.go.request.tags);
 }

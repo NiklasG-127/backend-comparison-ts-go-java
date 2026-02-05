@@ -1,2 +1,8 @@
 docker compose run --rm -e ENDPOINT=hash k6 run -o experimental-prometheus-rw scripts/smoke.js
 
+
+SMOKE: Mixed workload über kurze Zeit (1x) Verteilung über math.random niedrige Rate
+Spike: Je Route mit kurzem Peak (6x)
+Stress: Je Route bis zm Bruch (6x)
+Soak: Mixed Workload über 1h mit mäßiger Last (1x) mittlere Rate
+Load: Mixed über 10-15min (1x) Verteilung über math.random höhere Rate
