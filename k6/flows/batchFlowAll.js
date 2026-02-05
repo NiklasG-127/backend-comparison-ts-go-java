@@ -6,9 +6,9 @@ import {check} from "k6"
 
 export function runBatch(){
     const responses = http.batch([
-        ["GET", `${JAVA_URL}/health`, null, {tags: {api: "java_api", route: "health"}}],
-        ["GET", `${TS_URL}/health`, null, {tags: {api: "ts_api", route: "health"}}],
-        ["GET", `${GO_URL}/health`, null, {tags: {api: "go_api", route: "health"}}],
+        ["GET", `${JAVA_URL}/health`, null, params("java_api", "health")],
+        ["GET", `${TS_URL}/health`, null, params("ts_api", "health")],
+        ["GET", `${GO_URL}/health`, null, params("go_api", "health")],
 
         ["POST", `${JAVA_URL}/compute/primes`, bodyPrimes, params("java_api", "compute_primes")],
         ["POST", `${TS_URL}/compute/primes`, bodyPrimes, params("ts_api", "compute_primes")],

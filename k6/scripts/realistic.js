@@ -1,5 +1,6 @@
-import {runBatchReal} from "../flows/batchRealistic.js";
 import {sleep} from "k6"
+import {pickEndpoint} from "../shared/pickEndpoint.js";
+import {runSingleBatch} from "../flows/batchFlowSingle.js";
 
 export const options = {
     vus: 1,
@@ -8,6 +9,7 @@ export const options = {
 }
 
 export default function (){
-    runBatchReal()
+    const {path, method, body, endpoint} = pickEndpoint()
+    runSingleBatch(path, method, body, endpoint);
     sleep(0.2)
 }
