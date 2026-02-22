@@ -10,11 +10,8 @@ services:
       - SERVER_ADDRESS=0.0.0.0
     ports:
       - "3060:3060"
-    deploy:
-      resources:
-        limits:
-          cpus: "1"
-          memory: 1024M
+    mem_limit: 1024m
+    cpus: 1.0
 
   java-api:
     build: ./apis/api-java
@@ -27,11 +24,8 @@ services:
       - SERVER_ADDRESS=0.0.0.0
     ports:
       - "3070:3070"
-    deploy:
-      resources:
-        limits:
-          cpus: "1"
-          memory: 1024M
+    mem_limit: 1024m
+    cpus: 1.0
 
   go-api:
     build: ./apis/api-go
@@ -44,11 +38,8 @@ services:
       - SERVER_ADDRESS=0.0.0.0
     ports:
       - "3080:3080"
-    deploy:
-      resources:
-        limits:
-          cpus: "1"
-          memory: 1024M
+    mem_limit: 1024m
+    cpus: 1.0
 
   prometheus:
     image: prom/prometheus
