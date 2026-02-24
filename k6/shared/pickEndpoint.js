@@ -1,4 +1,4 @@
-import {bodyHash, bodyMixed, bodyOrders, bodyPrimes, bodySort} from "./bodies";
+import {bodyHash, bodyMixed, bodyOrders, bodyPrimes, bodySort} from "./bodies.js";
 
 export function pickEndpoint(){
     const r = Math.random();

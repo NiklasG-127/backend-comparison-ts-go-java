@@ -1,5 +1,4 @@
-docker compose run --rm -e ENDPOINT=hash k6 run -o experimental-prometheus-rw scripts/smoke.js
-
+docker compose run --rm -e API=go-api -e TARGET=go k6 run -o experimental-prometheus-rw scripts/smoke.js
 
 SMOKE: Mixed workload über kurze Zeit (1x) Verteilung über math.random niedrige Rate
 Spike: Je Route mit kurzem Peak (6x)

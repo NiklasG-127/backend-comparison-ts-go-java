@@ -1,29 +1,38 @@
-import {runSingleBatch} from "../flows/batchFlowSingle.js";
+import http from "k6/http";
+import { check } from "k6";
+
 import {cases} from "../shared/cases.js";
+import {getBaseUrl} from "../shared/config.js";
+import {params} from "../shared/params.js";
+
 
 export const options = {
-    scenarios: {
-        api_load: {
-            executor: 'ramping-arrival-rate',
-            startRate: 10,
-            timeUnit: '1s',
-            preAllocatedVUs: 50,
-            maxVUs: 2000,
-            stages: [
-                { target: 20, duration: '30s' },
-                { target: 200, duration: '1m' },
-                { target: 500, duration: '1m' },
-                { target: 1000, duration: '1m' },
-                { target: 2000, duration: '1m' },
-                { target: 20, duration: '30s' },
-            ]
-
-        }
-    }
+    stages: [
+        {duration: '60s', target: 3}, // Warm up
+        {duration: '30s', target: 0}, // Pause
+        {duration: '30s', target: 25}, // 1.Spike
+        {duration: '60s', target: 5}, // Erholung
+        {duration: '30s', target: 30}, // 2.Spike
+        {duration: '60s', target: 5}, // Stabilisierung
+    ],
+    tags: { scenario: "spike"}
 }
 
-const selected = cases[__ENV.ENDPOINT || "primes"];
+export default function () {
+    const baseUrl = getBaseUrl();
 
-export default function (){
-    runSingleBatch(selected);
+    const request = cases[__ENV.ROUTE];
+
+    const url = `${baseUrl}${request.path}`;
+    const p = params(__ENV.API, request.endpoint);
+
+    let res;
+    if (request.method === "GET") {
+        res = http.get(url, p);
+    } else {
+        res = http.post(url, request.body, p);
+    }
+
+    check(res, { "status is 200": (r) => r.status === 200 });
+
 }
