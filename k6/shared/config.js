@@ -3,7 +3,7 @@ export const JAVA_URL = 'http://my-java-api:3070'
 export const GO_URL = 'http://my-go-api:3080'
 
 export const THINK_TIME_SMOKE = Number(0.3)
-export const THINK_TIME_SOAK = Number(1)
+export const THINK_TIME_SOAK = Number(0.4)
 export const THINK_TIME_LOAD = Number(0.5)
 
 export function getBaseUrl() {

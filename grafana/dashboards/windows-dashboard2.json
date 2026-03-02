@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -123,7 +123,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -225,7 +225,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -299,7 +299,7 @@
           "calcs": [
             "mean",
             "median",
-            "lastNotNull"
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
@@ -328,7 +328,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -400,7 +400,7 @@
         "legend": {
           "calcs": [
             "mean",
-            "last",
+            "median",
             "max"
           ],
           "displayMode": "table",
@@ -430,7 +430,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -537,7 +537,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -637,7 +637,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -854,7 +854,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "afe4jjy6mjev4c"
+        "uid": "afe4kos892bk0d"
       },
       "fieldConfig": {
         "defaults": {
@@ -981,8 +981,8 @@
       },
       {
         "current": {
-          "text": "All",
-          "value": "$__all"
+          "text": "orders_aggregate",
+          "value": "orders_aggregate"
         },
         "definition": "label_values(route)",
         "description": "",
@@ -1002,12 +1002,12 @@
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2026-02-25T18:31:30.000Z",
+    "to": "2026-02-25T18:34:30.000Z"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "bachelor Copy",
   "uid": "ad9flth",
-  "version": 3
+  "version": 5
 }

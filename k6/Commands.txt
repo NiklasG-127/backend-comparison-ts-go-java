@@ -1,7 +1,24 @@
-docker compose run --rm -e API=go-api -e TARGET=go k6 run -o experimental-prometheus-rw scripts/smoke.js
-
 SMOKE: Mixed workload über kurze Zeit (1x) Verteilung über math.random niedrige Rate
 Spike: Je Route mit kurzem Peak (6x)
 Stress: Je Route bis zm Bruch (6x)
 Soak: Mixed Workload über 1h mit mäßiger Last (1x) mittlere Rate
 Load: Mixed über 10-15min (1x) Verteilung über math.random höhere Rate
+
+
+
+load: docker compose run --rm -e API=go-api -e TARGET=go k6 run -o experimental-prometheus-rw scripts/load.js
+
+spike: docker compose run --rm -e API=go-api -e TARGET=go -e ROUTE=health k6 run -o experimental-prometheus-rw scripts/spike.js
+
+stress: docker compose run --rm -e API=java-api -e TARGET=java -e ROUTE=sort k6 run -o experimental-prometheus-rw scripts/stress.js
+
+soak: docker compose run --rm -e API=go-api -e TARGET=go k6 run -o experimental-prometheus-rw scripts/soak.js
+
+docker compose up java-api go-api ts-api
+
+docker compose up prometheus grafana renderer cadvisor
+
+
+
+
+idee für fix bei stress: 100 * (1 - avg by (api) (avg_over_time(k6_http_req_failed_rate[1m])))

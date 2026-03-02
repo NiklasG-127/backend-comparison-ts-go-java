@@ -1,5 +1,5 @@
 import http from "k6/http";
-import { check } from "k6";
+import { check, sleep } from "k6";
 
 import {cases} from "../shared/cases.js";
 import {getBaseUrl} from "../shared/config.js";
@@ -8,16 +8,23 @@ import {params} from "../shared/params.js";
 
 export const options = {
     stages: [
-        {duration: '60s', target: 3}, // Warm up
-        {duration: '30s', target: 0}, // Pause
-        {duration: '30s', target: 25}, // 1.Spike
-        {duration: '60s', target: 5}, // Erholung
-        {duration: '30s', target: 30}, // 2.Spike
-        {duration: '60s', target: 5}, // Stabilisierung
-    ],
-    tags: { scenario: "spike"}
-}
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
 
+        { duration: "1s",  target: 500 }, // Spike: schnell hoch
+        { duration: "29s", target: 500 }, // halten
+
+        { duration: "1s",  target: 1 },  // schnell runter
+        { duration: "59s", target: 1 },  // Erholung
+
+        { duration: "1s",  target: 1000 }, // 2. Spike
+        { duration: "29s", target: 1000 }, // halten
+
+        { duration: "1s",  target: 1 },  // runter
+        { duration: "59s", target: 1 },  // Stabilisierung
+    ],
+    tags: { scenario: "spike" },
+};
 export default function () {
     const baseUrl = getBaseUrl();
 
@@ -34,5 +41,5 @@ export default function () {
     }
 
     check(res, { "status is 200": (r) => r.status === 200 });
-
+    sleep(0.1)
 }

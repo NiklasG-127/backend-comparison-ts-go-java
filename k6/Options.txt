@@ -1,1 +1,326 @@
 Hier kommen optionen rein
+
+Load:
+export const options = {
+    stages: [
+        {duration: '60s', target: 5}, //Warmup
+        {duration: '30s', target: 0}, // Pause
+        {duration: '2m', target: 15}, // Ramp up
+        {duration: '8m', target: 30}, // Load über 8 min
+    ],
+    tags: { scenario: "load" },
+};
+
+
+Spike:
+Hash:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 15 }, // Spike: schnell hoch
+        { duration: "29s", target: 15 }, // halten
+
+        { duration: "1s",  target: 1 },  // schnell runter
+        { duration: "59s", target: 1 },  // Erholung
+
+        { duration: "1s",  target: 20 }, // 2. Spike
+        { duration: "29s", target: 20 }, // halten
+
+        { duration: "1s",  target: 1 },  // runter
+        { duration: "59s", target: 1 },  // Stabilisierung
+    ],
+    tags: { scenario: "spike" },
+};
+
+Primes:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 100 }, // Spike: schnell hoch
+        { duration: "29s", target: 100 }, // halten
+
+        { duration: "1s",  target: 1 },  // schnell runter
+        { duration: "59s", target: 1 },  // Erholung
+
+        { duration: "1s",  target: 200 }, // 2. Spike
+        { duration: "29s", target: 200 }, // halten
+
+        { duration: "1s",  target: 1 },  // runter
+        { duration: "59s", target: 1 },  // Stabilisierung
+    ],
+    tags: { scenario: "spike" },
+};
+
+Sort:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 100 }, // Spike: schnell hoch
+        { duration: "29s", target: 100 }, // halten
+
+        { duration: "1s",  target: 1 },  // schnell runter
+        { duration: "59s", target: 1 },  // Erholung
+
+        { duration: "1s",  target: 200 }, // 2. Spike
+        { duration: "29s", target: 200 }, // halten
+
+        { duration: "1s",  target: 1 },  // runter
+        { duration: "59s", target: 1 },  // Stabilisierung
+    ],
+    tags: { scenario: "spike" },
+};
+
+Mixed:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 5 }, // Spike: schnell hoch
+        { duration: "29s", target: 5 }, // halten
+
+        { duration: "1s",  target: 1 },  // schnell runter
+        { duration: "59s", target: 1 },  // Erholung
+
+        { duration: "1s",  target: 10 }, // 2. Spike
+        { duration: "29s", target: 10 }, // halten
+
+        { duration: "1s",  target: 1 },  // runter
+        { duration: "59s", target: 1 },  // Stabilisierung
+    ],
+    tags: { scenario: "spike" },
+};
+
+Orders:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 50 }, // Spike: schnell hoch
+        { duration: "29s", target: 50 }, // halten
+
+        { duration: "1s",  target: 1 },  // schnell runter
+        { duration: "59s", target: 1 },  // Erholung
+
+        { duration: "1s",  target: 100 }, // 2. Spike
+        { duration: "29s", target: 100 }, // halten
+
+        { duration: "1s",  target: 1 },  // runter
+        { duration: "59s", target: 1 },  // Stabilisierung
+    ],
+    tags: { scenario: "spike" },
+};
+
+Health:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 500 }, // Spike: schnell hoch
+        { duration: "29s", target: 500 }, // halten
+
+        { duration: "1s",  target: 1 },  // schnell runter
+        { duration: "59s", target: 1 },  // Erholung
+
+        { duration: "1s",  target: 1000 }, // 2. Spike
+        { duration: "29s", target: 1000 }, // halten
+
+        { duration: "1s",  target: 1 },  // runter
+        { duration: "59s", target: 1 },  // Stabilisierung
+    ],
+    tags: { scenario: "spike" },
+};
+
+
+Stress:
+Hash:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 20 },
+        { duration: "59s", target: 20 },
+
+        { duration: "1s",  target: 40 },
+        { duration: "59s", target: 40 },
+
+        { duration: "1s",  target: 60 },
+        { duration: "59s", target: 60 },
+
+        { duration: "1s",  target: 80 },
+        { duration: "59s", target: 80 },
+        { duration: "1s",  target: 100 },
+        { duration: "59s", target: 100 },
+        { duration: "1s",  target: 120 },
+        { duration: "59s", target: 120 },
+        { duration: "1s",  target: 140 },
+        { duration: "59s", target: 140 },
+        { duration: "1s",  target: 160 },
+        { duration: "59s", target: 160 },
+        { duration: "1s",  target: 180 },
+        { duration: "59s", target: 180 },
+        { duration: "1s",  target: 1 },
+        { duration: "119s",  target: 1 },
+    ],
+    tags: { scenario: "stress"},
+    thresholds: {
+        http_req_failed: ["rate<0.05"], // < 5% Fehler der Anfragen
+        http_req_duration: ["p(99)<30000"], // < 30s Als Antwortzeit
+        checks: ["rate>0.95"] // 95% der Checks ok
+    }
+}
+
+primes:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 2000 },
+        { duration: "59s", target: 2000 },
+
+        { duration: "1s",  target: 4000 },
+        { duration: "59s", target: 4000 },
+
+        { duration: "1s",  target: 6000 },
+        { duration: "59s", target: 6000 },
+
+        { duration: "1s",  target: 8000 },
+        { duration: "59s", target: 8000 },
+
+        { duration: "1s",  target: 1 },
+        { duration: "119s",  target: 1 },
+    ],
+    tags: { scenario: "stress"},
+    thresholds: {
+        http_req_failed: ["rate<0.05"], // < 5% Fehler der Anfragen
+        http_req_duration: ["p(99)<30000"], // < 30s Als Antwortzeit
+        checks: ["rate>0.95"] // 95% der Checks ok
+    }
+}
+
+sort:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 250 },
+        { duration: "59s", target: 250 },
+
+        { duration: "1s",  target: 500 },
+        { duration: "59s", target: 500 },
+
+        { duration: "1s",  target: 750 },
+        { duration: "59s", target: 750 },
+
+        { duration: "1s",  target: 1000 },
+        { duration: "59s", target: 1000 },
+
+        { duration: "1s",  target: 1 },
+        { duration: "119s",  target: 1 },
+    ],
+    tags: { scenario: "stress"},
+    thresholds: {
+        http_req_failed: ["rate<0.05"], // < 5% Fehler der Anfragen
+        http_req_duration: ["p(99)<30000"], // < 30s Als Antwortzeit
+        checks: ["rate>0.95"] // 95% der Checks ok
+    }
+}
+
+mixed:
+Java/TS:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 10 },
+        { duration: "59s", target: 10 },
+
+        { duration: "1s",  target: 20 },
+        { duration: "59s", target: 20 },
+
+        { duration: "1s",  target: 30 },
+        { duration: "59s", target: 30 },
+
+        { duration: "1s",  target: 40 },
+        { duration: "59s", target: 40 },
+
+        { duration: "1s",  target: 1 },
+        { duration: "119s",  target: 1 },
+    ],
+    tags: { scenario: "stress"},
+    thresholds: {
+        http_req_failed: ["rate<0.05"], // < 5% Fehler der Anfragen
+        http_req_duration: ["p(99)<30000"], // < 30s Als Antwortzeit
+        checks: ["rate>0.95"] // 95% der Checks ok
+    }
+}
+
+Go:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 15 },
+        { duration: "59s", target: 15 },
+
+        { duration: "1s",  target: 30 },
+        { duration: "59s", target: 30 },
+
+        { duration: "1s",  target: 45 },
+        { duration: "59s", target: 45 },
+
+        { duration: "1s",  target: 60 },
+        { duration: "59s", target: 60 },
+
+        { duration: "1s",  target: 1 },
+        { duration: "119s",  target: 1 },
+    ],
+    tags: { scenario: "stress"},
+    thresholds: {
+        http_req_failed: ["rate<0.05"], // < 5% Fehler der Anfragen
+        http_req_duration: ["p(99)<30000"], // < 30s Als Antwortzeit
+        checks: ["rate>0.95"] // 95% der Checks ok
+    }
+}
+
+Orders:
+export const options = {
+    stages: [
+        { duration: "60s", target: 2 },  // Warmup
+        { duration: "30s", target: 0 },  // Pause
+
+        { duration: "1s",  target: 1000 },
+        { duration: "59s", target: 1000 },
+
+        { duration: "1s",  target: 2000 },
+        { duration: "59s", target: 2000 },
+
+        { duration: "1s",  target: 3000 },
+        { duration: "59s", target: 3000 },
+
+        { duration: "1s",  target: 4000 },
+        { duration: "59s", target: 4000 },
+
+        { duration: "1s",  target: 1 },
+        { duration: "119s",  target: 1 },
+    ],
+    tags: { scenario: "stress"},
+    thresholds: {
+        http_req_failed: ["rate<0.05"], // < 5% Fehler der Anfragen
+        http_req_duration: ["p(99)<30000"], // < 30s Als Antwortzeit
+        checks: ["rate>0.95"] // 95% der Checks ok
+    }
+}

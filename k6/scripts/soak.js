@@ -12,6 +12,7 @@ export const options = {
     stages: [
         {duration: '2m', target: 5}, // Warmup
         {duration: '30s', target: 0}, // pause
+        {duration: '1s', target: 12}, // Ramp up auf 12
         {duration: '60m', target: 12}, // 60 min Soak
     ],
     tags: { scenario: "soak" },
