@@ -147,27 +147,18 @@ export const options = {
         { duration: "60s", target: 2 },  // Warmup
         { duration: "30s", target: 0 },  // Pause
 
-        { duration: "1s",  target: 20 },
-        { duration: "59s", target: 20 },
-
-        { duration: "1s",  target: 40 },
-        { duration: "59s", target: 40 },
-
-        { duration: "1s",  target: 60 },
-        { duration: "59s", target: 60 },
-
-        { duration: "1s",  target: 80 },
-        { duration: "59s", target: 80 },
-        { duration: "1s",  target: 100 },
-        { duration: "59s", target: 100 },
-        { duration: "1s",  target: 120 },
-        { duration: "59s", target: 120 },
         { duration: "1s",  target: 140 },
         { duration: "59s", target: 140 },
+
         { duration: "1s",  target: 160 },
         { duration: "59s", target: 160 },
+
         { duration: "1s",  target: 180 },
         { duration: "59s", target: 180 },
+
+        { duration: "1s",  target: 200 },
+        { duration: "59s", target: 200 },
+
         { duration: "1s",  target: 1 },
         { duration: "119s",  target: 1 },
     ],

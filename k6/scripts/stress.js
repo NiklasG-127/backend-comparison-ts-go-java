@@ -12,17 +12,17 @@ export const options = {
         { duration: "60s", target: 2 },  // Warmup
         { duration: "30s", target: 0 },  // Pause
 
-        { duration: "1s",  target: 1000 },
-        { duration: "59s", target: 1000 },
+        { duration: "1s",  target: 140 },
+        { duration: "59s", target: 140 },
 
-        { duration: "1s",  target: 2000 },
-        { duration: "59s", target: 2000 },
+        { duration: "1s",  target: 160 },
+        { duration: "59s", target: 160 },
 
-        { duration: "1s",  target: 3000 },
-        { duration: "59s", target: 3000 },
+        { duration: "1s",  target: 180 },
+        { duration: "59s", target: 180 },
 
-        { duration: "1s",  target: 4000 },
-        { duration: "59s", target: 4000 },
+        { duration: "1s",  target: 200 },
+        { duration: "59s", target: 200 },
 
         { duration: "1s",  target: 1 },
         { duration: "119s",  target: 1 },
