@@ -229,36 +229,6 @@ export const options = {
 }
 
 mixed:
-Java/TS:
-export const options = {
-    stages: [
-        { duration: "60s", target: 2 },  // Warmup
-        { duration: "30s", target: 0 },  // Pause
-
-        { duration: "1s",  target: 10 },
-        { duration: "59s", target: 10 },
-
-        { duration: "1s",  target: 20 },
-        { duration: "59s", target: 20 },
-
-        { duration: "1s",  target: 30 },
-        { duration: "59s", target: 30 },
-
-        { duration: "1s",  target: 40 },
-        { duration: "59s", target: 40 },
-
-        { duration: "1s",  target: 1 },
-        { duration: "119s",  target: 1 },
-    ],
-    tags: { scenario: "stress"},
-    thresholds: {
-        http_req_failed: ["rate<0.05"], // < 5% Fehler der Anfragen
-        http_req_duration: ["p(99)<30000"], // < 30s Als Antwortzeit
-        checks: ["rate>0.95"] // 95% der Checks ok
-    }
-}
-
-Go:
 export const options = {
     stages: [
         { duration: "60s", target: 2 },  // Warmup
