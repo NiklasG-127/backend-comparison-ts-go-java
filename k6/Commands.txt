@@ -18,7 +18,6 @@ docker compose up java-api go-api ts-api
 
 docker compose up prometheus grafana renderer cadvisor
 
-
-
-
-idee für fix bei stress: 100 * (1 - avg by (api) (avg_over_time(k6_http_req_failed_rate[1m])))
+cloc apis/api-go --git
+cloc apis/api-java/src/main/java/de/niklas/apijava --git
+cloc apis/api-ts/src --git
