@@ -47,7 +47,7 @@ Die Performance-Evaluation wird mit k6 durchgeführt. Es werden folgende Testtyp
 
 ## Erklärung des k6-Commands
 k6 Commands bestehen aus mehreren Teilen:
-- `docker compose run` startet einen neuen Container des `k6`Services.
+- `docker compose run` startet einen neuen Container des `k6` Services.
 - `--rm` sorgt dafür, dass der Container nach Beendigung des Tests automatisch gelöscht wird.
 - `-e API=go-api` setzt die Umgebungsvariable, die Labels für den Testlauf definiert für z.B. Logging oder Metriken.
 - `-e TARGET=go` setzt die Umgebungsvariable, die festlegt welche API getestet wird (hier die Go-API)
@@ -69,7 +69,7 @@ http://localhost:3000
 
 Dieses Repository enthält ausschließlich die Implementierungen und Testumgebung der Untersuchung.  
 Die vollständige Analyse der Ergebnisse ist in der zugehörigen Bachelorarbeit dokumentiert.
-Die Arbeit wurde im Bachelor-Studiengang Wirtschaftsinformatik an der IU Internationalen Hochschule erstellt.
+Die Arbeit wurde im Bachelor-Studiengang Wirtschaftsinformatik an der IU Internationalen Hochschule erstellt.  
 
 ## License
 
